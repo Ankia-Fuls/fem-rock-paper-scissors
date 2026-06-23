@@ -1,9 +1,102 @@
+@import url('https://fonts.googleapis.com/css2?family=Barlow+Semi+Condensed:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
+:root {
+    --gold-500: hsl(39, 89%, 49%);
+    --gold-600: hsl(28, 76%, 44%);
+    --blue-500: hsl(230, 89%, 62%);
+    --blue-700: hsl(229, 64%, 46%); //score text
+    --red-600: hsl(349, 71%, 52%);
+    --red-800: hsl(347, 75%, 35%);
+    --purple-600: hsl(261, 73%, 60%);
+    --purple-700: hsl(261, 51%, 44%);
+    --light-blue-400: hsl(189, 59%, 53%);
+    --light-blue-500: hsl(194, 58%, 42%);
+    --navy-900: hsl(229, 25%, 31%); //dark text
+    --gray-600: hsl(246, 11%, 37%); //header outline
+    --radial-start: hsl(214, 47%, 23%);
+    --radial-end: hsl(237, 48%, 15%);
+
+    --attribution: hsl(228, 45%, 44%);
+}
+
+*,
+*::before,
+*::after,
+html,
+body {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-size: 100%;
+    font-family: "Barlow Semi Condensed", sans-serif;
+    color: white;
+    width: 100vw;
+    height: 100vh;
+    background: radial-gradient(circle at center top, var(--radial-start) 10%, var(--radial-end) 90%);
+}
+
+#root {
+    width: 100%;
+    height: 100%;
+}
+
+main {
+    position: relative;
+    width: 100%;
+    height: 100%;
+}
+
+.game {
+    position: relative;
+    padding: 1.8125rem;
+    width: 100%;
+    height: 100%;
+
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: 6.25rem calc(100% - 6.25rem - 2.1875rem - 2.5625rem - 3.375rem); //minus the first row, the button and the spacing around it
+
+    &__rule-btn {
+        position: absolute;
+        bottom: 3.375rem;
+        left: 50%;
+        transform: translateX(-50%);
+
+        width: 8rem;
+        height: 2.5625rem;
+        border: 0.0625rem solid hsla(0, 0%, 100%, 0.8);
+        border-radius: 0.5rem;
+
+        background-color: transparent;
+
+        color: inherit;
+        font-family: inherit;
+        font-size: 1.125rem;
+        font-weight: 500;
+        letter-spacing: 0.125rem;
+        text-transform: uppercase;
+
+    }
+}
+
+.rules {
+    width: 100%;
+    height: 100%;
+    max-height: none;
+    max-width: none;
+    border: none;
+}
+
+
 .attribution {
     font-size: 0.6875rem;
     text-align: center;
     padding: 1rem;
 
     a {
-        color: hsl(228, 45%, 44%);
+        color: var(--attribution);
     }
 }

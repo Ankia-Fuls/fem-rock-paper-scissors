@@ -3,6 +3,7 @@ import './css/styles.scss'
 
 function App() {
 
+  // Rules for determining winner
   const [rules, setRules] = useState({
     "scissors": { "win": ["paper", "lizard"], "lose": ["rock", "spock"] },
     "paper": { "win": ["rock", "spock"], "lose": ["scissors", "lizard"] },
@@ -11,9 +12,14 @@ function App() {
     "spock": { "win": ["scissors", "rock"], "lose": ["lizard", "paper"] }
   });
 
+  // dialog variables
   const dialogRef = useRef(null);
   const [isOpen, setIsOpen] = useState(false);
 
+  // Score
+  const [score, setScore] = useState(12);
+
+  // Toggle modal state
   useEffect(() => {
     const dialog = dialogRef.current;
 
@@ -31,7 +37,7 @@ function App() {
   //how to test if win
   // console.log(rules["scissors"]["win"].includes("paper"))
 
-  // make area outside clickable
+  // make area outside clickable and check that flag is reset on escape
   // const closeModalClick = (e) => {
   //   const dialog = dialogRef.current;
   //   const rect = dialog.getBoundingClientRect();
@@ -48,19 +54,34 @@ function App() {
   return (
     <>
       <main>
-        Score
-        Rules
+        <section className='game'>
+          {/* 
 
-        You Picked
-        The House Picked
+          You Picked
+          The House Picked
 
-        You Win
-        You Lose
+          You Win
+          You Lose
 
-        Play Again
-        <button onClick={() => setIsOpen(true)}>Rules</button>
+          Play Again */}
+          <div className='game__header'>
+            <h1>Rock, Paper, Scissors, Lizard, Spock</h1>
 
-        <dialog ref={dialogRef}>
+            <div className='game__score'>
+              Score <span>{score}</span>
+            </div>
+          </div>
+
+          <div className='game__main'>
+
+          </div>
+
+
+          <button onClick={() => setIsOpen(true)} className='game__rule-btn'>Rules</button>
+        </section>
+
+
+        <dialog className='rules' ref={dialogRef}>
           <button onClick={() => setIsOpen(false)}>Close</button>
         </dialog>
 
