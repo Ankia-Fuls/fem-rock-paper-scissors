@@ -65,10 +65,11 @@ function App() {
 
           Play Again */}
           <div className='game__header'>
-            <h1>Rock, Paper, Scissors, Lizard, Spock</h1>
+            <h1>Rock Paper Scissors Lizard Spock</h1>
 
             <div className='game__score'>
-              Score <span>{score}</span>
+              Score
+              <span className='game__score--value'>{score}</span>
             </div>
           </div>
 
