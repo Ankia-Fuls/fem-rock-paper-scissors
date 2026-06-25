@@ -17,13 +17,24 @@ function App() {
   const [isOpen, setIsOpen] = useState(false);
 
   // Score
-  const [score, setScore] = useState(12);
+  const [score, setScore] = useState(0);
   const [result, setResult] = useState("");
 
   // State
   const [chosen, setChosen] = useState(false);
   const [userChoice, setUserChoice] = useState("");
   const [computerChoice, setComputerChoice] = useState("");
+
+  // LOCAL STORAGE
+  useEffect(() => {
+    const value = localStorage.getItem("score");
+    if (value) {
+      setScore(value);
+    }
+    else {
+      setScore(0);
+    }
+  }, [])
 
   // Toggle modal state
   useEffect(() => {
@@ -93,10 +104,23 @@ function App() {
       // user win
       setResult("You Win");
       // update score
+      const tempScore = score + 1;
+      setScore(tempScore);
+      localStorage.setItem("score", tempScore);
     }
     else {
       setResult("You Lose");
       // update score
+      if (score > 0) {
+        const tempScore = score - 1;
+        setScore(tempScore);
+        localStorage.setItem("score", tempScore);
+      }
+      else {
+        setScore(0);
+        localStorage.setItem("score", 0);
+      }
+
     }
 
 
@@ -166,15 +190,17 @@ function App() {
           <div className={chosen ? 'game__results' : 'game__results hidden'} aria-hidden={!chosen} inert={!chosen}>
             <div className='results__user'>
               <h2>You Picked</h2>
+              <p className='sr-only'>{userChoice}</p>
               <div className='results__display'>
-                <img src={"./src/assets/images/icon-" + userChoice + ".svg"} alt="" />
+                <img src={"./src/assets/images/icon-" + userChoice + ".svg"} alt={userChoice} aria-hidden="true" />
               </div>
             </div>
 
             <div className='results__computer'>
               <h2>The House Picked</h2>
+              <p className='sr-only'>{computerChoice}</p>
               <div className='results__display results__display--house'>
-                <img src={"./src/assets/images/icon-" + computerChoice + ".svg"} alt="" />
+                <img src={"./src/assets/images/icon-" + computerChoice + ".svg"} alt={computerChoice} aria-hidden="true" />
               </div>
             </div>
 
