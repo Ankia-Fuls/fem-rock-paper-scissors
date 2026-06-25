@@ -18,11 +18,12 @@ function App() {
 
   // Score
   const [score, setScore] = useState(12);
-  const [win, setWin] = useState(false);
+  const [result, setResult] = useState("");
 
   // State
   const [chosen, setChosen] = useState(false);
-  const [userChoice, setUserChoice] = useState(null);
+  const [userChoice, setUserChoice] = useState("");
+  const [computerChoice, setComputerChoice] = useState("");
 
   // Toggle modal state
   useEffect(() => {
@@ -39,8 +40,6 @@ function App() {
     };
   }, [isOpen]);
 
-  //how to test if win
-  // console.log(rules["scissors"]["win"].includes("paper"))
 
   // make area outside clickable and check that flag is reset on escape
   // const closeModalClick = (e) => {
@@ -59,8 +58,57 @@ function App() {
   // USER CHOOSE
   const choose = (value) => {
     setUserChoice(value);
-    // Process other items
+
+    // get computer result
+    const computerRes = computerChoose();
+
+    // compare
+    winner(value, computerRes);
+
+    // Update state for next page
     setChosen(true);
+  }
+
+  // COMPUTER RESULT
+  const computerChoose = () => {
+    const options = ["scissors", "paper", "rock", "lizard", "spock"];
+
+    // random value
+    const rand = Math.floor(Math.random() * 5);
+
+    // set computer choice
+    const tempResult = options[rand];
+    setComputerChoice(tempResult);
+
+    return tempResult;
+  }
+
+  // DETERMINE WINNER
+  const winner = (user, computer) => {
+    if (user === computer) {
+      // tie
+      setResult("You Tied");
+    }
+    else if (rules[user]["win"].includes(computer)) {
+      // user win
+      setResult("You Win");
+      // update score
+    }
+    else {
+      setResult("You Lose");
+      // update score
+    }
+
+
+  }
+
+  // RESET GAME
+  const reset = () => {
+    setUserChoice("");
+    setComputerChoice("");
+    setResult("");
+
+    setChosen(false);
   }
 
   return (
@@ -119,20 +167,20 @@ function App() {
             <div className='results__user'>
               <h2>You Picked</h2>
               <div className='results__display'>
-                {/* Results image */}
+                <img src={"./src/assets/images/icon-" + userChoice + ".svg"} alt="" />
               </div>
             </div>
 
             <div className='results__computer'>
               <h2>The House Picked</h2>
               <div className='results__display results__display--house'>
-                {/* Results image */}
+                <img src={"./src/assets/images/icon-" + computerChoice + ".svg"} alt="" />
               </div>
             </div>
 
             <div className='results__result'>
-              <h2>{win ? "You Win" : "You Lose"}</h2>
-              <button className='results__reset'>Play Again</button>
+              <h2>{result}</h2>
+              <button className='results__reset' onClick={reset}>Play Again</button>
             </div>
           </div>
 
