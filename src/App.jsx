@@ -18,6 +18,10 @@ function App() {
 
   // Score
   const [score, setScore] = useState(12);
+  const [win, setWin] = useState(false);
+
+  // State
+  const [chosen, setChosen] = useState(false);
 
   // Toggle modal state
   useEffect(() => {
@@ -73,8 +77,31 @@ function App() {
             </div>
           </div>
 
-          <div className='game__main'>
+          {/* Choosing Step */}
+          <div className={!chosen ? 'game__choice' : 'game__choice hidden'} aria-hidden={chosen} inert={chosen}>
 
+          </div>
+
+          {/* Results */}
+          <div className={chosen ? 'game__results' : 'game__results hidden'} aria-hidden={!chosen} inert={!chosen}>
+            <div className='results__user'>
+              <h2>You Picked</h2>
+              <div className='results__display'>
+                {/* Results image */}
+              </div>
+            </div>
+
+            <div className='results__computer'>
+              <h2>The House Picked</h2>
+              <div className='results__display results__display--house'>
+                {/* Results image */}
+              </div>
+            </div>
+
+            <div className='results__result'>
+              <h2>{win ? "You Win" : "You Lose"}</h2>
+              <button className='results__reset'>Play Again</button>
+            </div>
           </div>
 
 

@@ -49,6 +49,11 @@ main {
     height: 100%;
 }
 
+.hidden {
+    display: none;
+    position: relative;
+}
+
 .game {
     position: relative;
     padding: 1.8125rem;
@@ -128,6 +133,31 @@ main {
         text-transform: uppercase;
 
     }
+
+    &__results {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        grid-template-rows: auto auto;
+        grid-template-areas:
+            "user computer"
+            "result result";
+
+        // For large screens, all in row, place result between the others
+    }
+}
+
+.results {
+    &__user {
+        grid-area: user;
+    }
+
+    &__computer {
+        grid-area: computer;
+    }
+
+    &__result {
+        grid-area: result;
+    }
 }
 
 .rules {
@@ -140,6 +170,8 @@ main {
 
 
 .attribution {
+    width: 100%;
+    background-color: var(--radial-end);
     font-size: 0.6875rem;
     text-align: center;
     padding: 1rem;
