@@ -22,6 +22,7 @@ function App() {
 
   // State
   const [chosen, setChosen] = useState(false);
+  const [userChoice, setUserChoice] = useState(null);
 
   // Toggle modal state
   useEffect(() => {
@@ -55,19 +56,17 @@ function App() {
   //   }
   // }
 
+  // USER CHOOSE
+  const choose = (value) => {
+    setUserChoice(value);
+    // Process other items
+    setChosen(true);
+  }
+
   return (
     <>
       <main>
         <section className='game'>
-          {/* 
-
-          You Picked
-          The House Picked
-
-          You Win
-          You Lose
-
-          Play Again */}
           <div className='game__header'>
             <h1>Rock Paper Scissors Lizard Spock</h1>
 
@@ -79,7 +78,40 @@ function App() {
 
           {/* Choosing Step */}
           <div className={!chosen ? 'game__choice' : 'game__choice hidden'} aria-hidden={chosen} inert={chosen}>
+            {/* SCISSORS */}
+            <button className='choice__btn' onClick={() => choose("scissors")} aria-label='Choose scissors' id="scissors">
+              <div className='choice__btn--wrapper'>
+                <img src="./src/assets/images/icon-scissors.svg" alt="" />
+              </div>
+            </button>
 
+            {/* PAPER */}
+            <button className='choice__btn choice__btn--blue' onClick={() => choose("paper")} aria-label='Choose paper' id="paper">
+              <div className='choice__btn--wrapper'>
+                <img src="./src/assets/images/icon-paper.svg" alt="" />
+              </div>
+            </button>
+
+            {/* ROCK */}
+            <button className='choice__btn choice__btn--red' onClick={() => choose("rock")} aria-label='Choose rock' id="rock">
+              <div className='choice__btn--wrapper'>
+                <img src="./src/assets/images/icon-rock.svg" alt="" />
+              </div>
+            </button>
+
+            {/* LIZARD */}
+            <button className='choice__btn choice__btn--purple' onClick={() => choose("lizard")} aria-label='Choose lizard' id="lizard">
+              <div className='choice__btn--wrapper'>
+                <img src="./src/assets/images/icon-lizard.svg" alt="" />
+              </div>
+            </button>
+
+            {/* SPOCK */}
+            <button className='choice__btn choice__btn--cyan' onClick={() => choose("spock")} aria-label='Choose spock' id="spock">
+              <div className='choice__btn--wrapper'>
+                <img src="./src/assets/images/icon-spock.svg" alt="" />
+              </div>
+            </button>
           </div>
 
           {/* Results */}
