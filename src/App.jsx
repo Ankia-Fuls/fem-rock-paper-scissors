@@ -22,12 +22,14 @@ function App() {
 
   // State
   const [chosen, setChosen] = useState(false);
+
+  // Choices
   const [userChoice, setUserChoice] = useState("");
   const [computerChoice, setComputerChoice] = useState("");
 
-  // LOCAL STORAGE
+  // LOCAL STORAGE SCORE INIT
   useEffect(() => {
-    const value = localStorage.getItem("score");
+    const value = JSON.parse(localStorage.getItem("score"));
     if (value) {
       setScore(value);
     }
@@ -66,7 +68,7 @@ function App() {
   //   }
   // }
 
-  // USER CHOOSE
+  // USER CHOOSE VALUE
   const choose = (value) => {
     setUserChoice(value);
 
@@ -120,10 +122,7 @@ function App() {
         setScore(0);
         localStorage.setItem("score", 0);
       }
-
     }
-
-
   }
 
   // RESET GAME
