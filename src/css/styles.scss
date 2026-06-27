@@ -1,6 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Barlow+Semi+Condensed:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
 
 :root {
+    // Button outlines
     --gold-500: hsl(39, 89%, 49%);
     --gold-600: hsl(28, 76%, 44%);
     --blue-500: hsl(230, 89%, 62%);
@@ -11,22 +12,31 @@
     --purple-700: hsl(261, 51%, 44%);
     --light-blue-400: hsl(189, 59%, 53%);
     --light-blue-500: hsl(194, 58%, 42%);
+
+    // Neutral
     --navy-900: hsl(229, 25%, 31%); //dark text
     --gray-600: hsl(246, 11%, 37%); //header outline
+
+    // Background gradient
     --radial-start: hsl(214, 47%, 23%);
     --radial-end: hsl(237, 48%, 15%);
 
+    // Own additions
     --attribution: hsl(228, 45%, 44%);
     --gray-shadow: hsla(246, 11%, 37%, 0.25);
-
     --circle-bg: hsl(220, 46%, 19%);
     --white: hsl(0, 0%, 98%);
 
+    // Winner circle background
     --ring-3: rgba(34, 53, 85, 0.5);
     --ring-2: rgba(40, 57, 87, 0.5);
     --ring-1: rgba(45, 62, 92, 0.5);
 }
 
+$med : 43.75rem;
+$lg : 61.25rem;
+
+// RESETS
 *,
 *::before,
 *::after,
@@ -36,6 +46,8 @@ body {
     padding: 0;
     box-sizing: border-box;
 }
+
+// UTILS
 
 .sr-only {
     position: absolute;
@@ -48,6 +60,13 @@ body {
     white-space: nowrap;
     border: 0;
 }
+
+.hidden {
+    display: none !important;
+    position: relative;
+}
+
+// BASE
 
 body {
     font-size: 100%;
@@ -69,22 +88,26 @@ main {
     height: 100%;
 }
 
-.hidden {
-    display: none !important;
-    position: relative;
-}
+// MAIN
 
 .game {
     position: relative;
     padding: 1.8125rem;
     width: 100%;
     height: 100%;
-    max-width: 47.75rem;
+
     margin: 0 auto;
 
     display: grid;
     grid-template-columns: 1fr;
     grid-template-rows: 6.25rem calc(100% - 6.25rem - 2.1875rem - 2.5625rem - 3.375rem); //minus the first row, the button and the spacing around it
+
+    @media screen and (min-width:$lg) {
+        padding: 2.875rem;
+        grid-template-rows: 9.5625rem calc(100% - 9.5625rem);
+
+        gap: 1.5rem;
+    }
 
     &__header {
         display: flex;
@@ -96,6 +119,16 @@ main {
 
         padding: 0.6875rem;
 
+        max-width: 43.75rem;
+        justify-self: center;
+        width: 100%;
+
+        @media screen and (min-width:$lg) {
+            border-radius: 1rem;
+
+            padding: 1rem;
+        }
+
         h1 {
             font-size: 0.85rem;
             text-transform: uppercase;
@@ -103,6 +136,10 @@ main {
             line-height: 0.8;
             margin-inline-start: 0.625rem;
             font-weight: 600;
+
+            @media screen and (min-width:$lg) {
+                font-size: 1.75rem;
+            }
         }
     }
 
@@ -124,11 +161,21 @@ main {
         justify-content: center;
         align-items: center;
 
+        @media screen and (min-width:$lg) {
+            width: 23%;
+            font-size: 1.125rem;
+            border-radius: 0.5rem;
+        }
+
         &--value {
             font-size: 2.5rem;
             color: var(--navy-900);
             font-weight: 700;
             line-height: 1;
+
+            @media screen and (min-width:$lg) {
+                font-size: 3.75rem;
+            }
 
         }
 
@@ -154,13 +201,16 @@ main {
         letter-spacing: 0.125rem;
         text-transform: uppercase;
 
+        @media screen and (min-width:$lg) {
+            bottom: 1.875rem;
+            left: unset;
+            right: 2rem;
+            transform: unset;
+        }
+
     }
 
     &__choice {
-        // height: 19.1875rem;
-        // min-height: 13rem;
-        // height: 60%;
-        // width: 13.8125rem;
         width: 65%;
         max-width: 16.875rem;
         min-width: 12.1875rem;
@@ -175,6 +225,10 @@ main {
         background-position: center;
 
         position: relative;
+
+        @media screen and (min-width:$lg) {
+            max-width: 19rem;
+        }
     }
 
     &__results {
@@ -212,6 +266,13 @@ main {
         justify-content: center;
         align-items: center;
 
+        @media screen and (min-width:$lg) {
+            width: 8.75rem;
+            height: 8.75rem;
+
+            box-shadow: inset 0 -0.35rem var(--accent), inset 0 0 0 1rem var(--color);
+        }
+
         &--wrapper {
             width: calc(100% - 1.5rem);
             height: calc(100% - 1.5rem);
@@ -222,6 +283,13 @@ main {
             align-items: center;
 
             box-shadow: inset 0 0.25rem var(--gray-shadow); //inner shadow
+
+            @media screen and (min-width:$lg) {
+                width: calc(100% - 2rem);
+                height: calc(100% - 2rem);
+
+                box-shadow: inset 0 0.35rem var(--gray-shadow);
+            }
 
             img {
                 width: 45%;
@@ -245,6 +313,7 @@ main {
 
     --color: var(--blue-500);
     --accent: var(--blue-700);
+
 }
 
 #rock {
@@ -411,6 +480,8 @@ main {
         z-index: -1;
     }
 }
+
+// MODAL
 
 .rules {
     width: 100%;
