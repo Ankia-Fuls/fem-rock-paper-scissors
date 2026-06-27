@@ -27,6 +27,10 @@ function App() {
   const [userChoice, setUserChoice] = useState("");
   const [computerChoice, setComputerChoice] = useState("");
 
+  // Animate display
+  const [displayUser, setDisplayUser] = useState(false);
+  const [displayComputer, setDisplayComputer] = useState(false);
+
   // LOCAL STORAGE SCORE INIT
   useEffect(() => {
     const value = JSON.parse(localStorage.getItem("score"));
@@ -80,6 +84,16 @@ function App() {
 
     // Update state for next page
     setChosen(true);
+
+    // Animate
+    setTimeout(() => {
+      setDisplayUser(true);
+    }, 200);
+
+    setTimeout(() => {
+      setDisplayComputer(true);
+    }, 900);
+
   }
 
   // COMPUTER RESULT
@@ -132,6 +146,8 @@ function App() {
     setResult("");
 
     setChosen(false);
+    setDisplayUser(false);
+    setDisplayComputer(false);
   }
 
   return (
@@ -191,7 +207,11 @@ function App() {
               <h2>You Picked</h2>
               <p className='sr-only'>{userChoice}</p>
               <div className='results__display'>
-                <img src={"./src/assets/images/icon-" + userChoice + ".svg"} alt={userChoice} aria-hidden="true" />
+                <div className={!displayUser ? 'results__display--container' : 'results__display--shown results__display--container'}>
+                  <div className='results__display--wrapper'>
+                    <img src={"./src/assets/images/icon-" + userChoice + ".svg"} alt={userChoice} aria-hidden="true" />
+                  </div>
+                </div>
               </div>
             </div>
 
@@ -199,7 +219,11 @@ function App() {
               <h2>The House Picked</h2>
               <p className='sr-only'>{computerChoice}</p>
               <div className='results__display results__display--house'>
-                <img src={"./src/assets/images/icon-" + computerChoice + ".svg"} alt={computerChoice} aria-hidden="true" />
+                <div className={!displayComputer ? 'results__display--container' : 'results__display--shown results__display--container'}>
+                  <div className='results__display--wrapper'>
+                    <img src={"./src/assets/images/icon-" + computerChoice + ".svg"} alt={computerChoice} aria-hidden="true" />
+                  </div>
+                </div>
               </div>
             </div>
 

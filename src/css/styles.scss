@@ -18,6 +18,8 @@
 
     --attribution: hsl(228, 45%, 44%);
     --gray-shadow: hsla(246, 11%, 37%, 0.25);
+
+    --circle-bg: hsl(220, 46%, 19%);
 }
 
 *,
@@ -48,7 +50,7 @@ body {
     color: white;
     width: 100vw;
     height: 100vh;
-    background: radial-gradient(circle at center top, var(--radial-start) 10%, var(--radial-end) 90%);
+    background: radial-gradient(circle at center top, var(--radial-start) 20%, var(--radial-end) 90%);
 }
 
 #root {
@@ -177,7 +179,11 @@ main {
         grid-template-areas:
             "user computer"
             "result result";
+        align-items: center;
 
+        font-size: 0.6125rem;
+        text-transform: uppercase;
+        letter-spacing: 0.125rem;
         // For large screens, all in row, place result between the others
     }
 }
@@ -269,14 +275,78 @@ main {
 .results {
     &__user {
         grid-area: user;
+
+        display: flex;
+        flex-direction: column-reverse;
+        align-items: center;
     }
 
     &__computer {
         grid-area: computer;
+
+        display: flex;
+        flex-direction: column-reverse;
+        align-items: center;
     }
 
     &__result {
         grid-area: result;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    &__display {
+        width: 6.875rem;
+        aspect-ratio: 1 / 1;
+        border-radius: 50%;
+        border: none;
+        background-color: var(--circle-bg);
+
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        &--shown {
+            transform: scale(120%) !important;
+        }
+
+        &--container {
+            width: 100%;
+            transform: scale(0%);
+            aspect-ratio: 1 / 1;
+            border-radius: 50%;
+            border: none;
+
+            overflow: hidden;
+            transition: transform 0.5s ease-in;
+
+            --color: var(--gold-500);
+            --accent: var(--gold-600);
+
+            box-shadow: inset 0 -0.25rem var(--accent), inset 0 0 0 0.75rem var(--color);
+
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        &--wrapper {
+            width: calc(100% - 1.5rem);
+            height: calc(100% - 1.5rem);
+            border-radius: 50%;
+            border: none;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: white;
+
+            box-shadow: inset 0 0.25rem var(--gray-shadow); //inner shadow
+
+            img {
+                width: 45%;
+            }
+        }
     }
 }
 
