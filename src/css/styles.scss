@@ -21,6 +21,10 @@
 
     --circle-bg: hsl(220, 46%, 19%);
     --white: hsl(0, 0%, 98%);
+
+    --ring-3: rgba(34, 53, 85, 0.5);
+    --ring-2: rgba(40, 57, 87, 0.5);
+    --ring-1: rgba(45, 62, 92, 0.5);
 }
 
 *,
@@ -357,6 +361,9 @@ main {
         justify-content: center;
         align-items: center;
 
+        box-shadow: 0;
+        transition: box-shadow 0.5s ease-in;
+
         &--shown {
             transform: scale(120%) !important;
         }
@@ -397,6 +404,11 @@ main {
                 width: 45%;
             }
         }
+    }
+
+    &__winner {
+        box-shadow: 0 0 0 1.75rem var(--ring-1), 0 0 0 3.25rem var(--ring-2), 0 0 0 5rem var(--ring-3);
+        z-index: -1;
     }
 }
 

@@ -212,7 +212,7 @@ function App() {
             <div className='results__user'>
               <h2>You Picked</h2>
               <p className='sr-only'>{userChoice}</p>
-              <div className='results__display'>
+              <div className={displayResult && (result === "You Win") ? 'results__display results__winner' : 'results__display'}>
                 <div className={!displayUser ? 'results__display--container' : 'results__display--shown results__display--container'}>
                   <div className='results__display--wrapper'>
                     <img src={"./src/assets/images/icon-" + userChoice + ".svg"} alt={userChoice} aria-hidden="true" />
@@ -224,7 +224,7 @@ function App() {
             <div className='results__computer'>
               <h2>The House Picked</h2>
               <p className='sr-only'>{computerChoice}</p>
-              <div className='results__display'>
+              <div className={displayResult && (result === "You Lose") ? 'results__display results__winner' : 'results__display'}>
                 <div className={!displayComputer ? 'results__display--container' : 'results__display--shown results__display--container'}>
                   <div className='results__display--wrapper'>
                     <img src={"./src/assets/images/icon-" + computerChoice + ".svg"} alt={computerChoice} aria-hidden="true" />
