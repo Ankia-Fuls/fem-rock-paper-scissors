@@ -153,6 +153,7 @@ function App() {
     setChosen(false);
     setDisplayUser(false);
     setDisplayComputer(false);
+    setDisplayResult(false);
   }
 
   return (
