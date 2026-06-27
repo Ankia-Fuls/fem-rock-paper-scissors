@@ -33,7 +33,7 @@
     --ring-1: rgba(45, 62, 92, 0.5);
 }
 
-$med : 43.75rem;
+$med : 31.25rem;
 $lg : 61.25rem;
 
 // RESETS
@@ -106,7 +106,7 @@ main {
         padding: 2.875rem;
         grid-template-rows: 9.5625rem calc(100% - 9.5625rem);
 
-        gap: 1.5rem;
+        // gap: 1.5rem;
     }
 
     &__header {
@@ -248,6 +248,21 @@ main {
         text-transform: uppercase;
         letter-spacing: 0.125rem;
         // For large screens, all in row, place result between the others
+
+        @media screen and (min-width:$lg) {
+            grid-template-columns: repeat(3, max-content);
+            grid-template-rows: auto;
+
+            grid-template-areas: "user result computer";
+
+            align-self: start;
+            padding-block-start: 3.5rem;
+            justify-self: center;
+
+            font-size: 1rem;
+
+            column-gap: 4.625rem;
+        }
     }
 }
 
@@ -358,10 +373,15 @@ main {
         display: flex;
         flex-direction: column-reverse;
         align-items: center;
+        gap: 2rem;
 
-        h2 {
-            padding-block-start: 2rem;
+        @media screen and (min-width:$lg) {
+            flex-direction: column;
+            gap: 5.5rem;
+
+            margin-inline-end: 1.5rem;
         }
+
     }
 
     &__computer {
@@ -371,9 +391,11 @@ main {
         display: flex;
         flex-direction: column-reverse;
         align-items: center;
+        gap: 2rem;
 
-        h2 {
-            padding-block-start: 2rem;
+        @media screen and (min-width:$lg) {
+            flex-direction: column;
+            gap: 5.5rem;
         }
 
         .results__display--container {
@@ -393,13 +415,33 @@ main {
         overflow: hidden;
         transition: transform 0.5s ease-in;
 
+        @media screen and (min-width:$lg) {
+            transition: opacity 1.5s ease-in;
+            opacity: 0;
+            height: 0;
+            overflow: hidden;
+            position: absolute;
+
+            margin-inline-end: 1.5rem;
+        }
+
         h2 {
             font-size: 3.25rem;
             padding-block-end: 1rem;
+
+            @media screen and (min-width:$lg) {
+                font-size: 3.5rem;
+            }
         }
 
         &--shown {
             transform: scale(100%);
+
+            @media screen and (min-width:$lg) {
+                opacity: 1;
+                height: auto;
+                position: relative;
+            }
         }
     }
 
@@ -417,6 +459,7 @@ main {
         background-color: var(--white);
         border-radius: 0.5rem;
         border: none;
+
     }
 
     &__display {
@@ -433,8 +476,16 @@ main {
         box-shadow: 0;
         transition: box-shadow 0.5s ease-in;
 
+        @media screen and (min-width:$lg) {
+            width: 14rem;
+        }
+
         &--shown {
             transform: scale(120%) !important;
+
+            @media screen and (min-width:$lg) {
+                transform: scale(135%) !important;
+            }
         }
 
         &--container {
@@ -455,6 +506,10 @@ main {
             display: flex;
             justify-content: center;
             align-items: center;
+
+            @media screen and (min-width:$lg) {
+                box-shadow: inset 0 -0.5rem var(--accent), inset 0 0 0 1.5rem var(--color);
+            }
         }
 
         &--wrapper {
@@ -469,6 +524,11 @@ main {
 
             box-shadow: inset 0 0.25rem var(--gray-shadow); //inner shadow
 
+            @media screen and (min-width:$lg) {
+                width: calc(100% - 3rem);
+                height: calc(100% - 3rem);
+            }
+
             img {
                 width: 45%;
             }
@@ -478,6 +538,10 @@ main {
     &__winner {
         box-shadow: 0 0 0 1.75rem var(--ring-1), 0 0 0 3.25rem var(--ring-2), 0 0 0 5rem var(--ring-3);
         z-index: -1;
+
+        @media screen and (min-width:$lg) {
+            box-shadow: 0 0 0 6rem var(--ring-1), 0 0 0 10rem var(--ring-2), 0 0 0 14.5rem var(--ring-3);
+        }
     }
 }
 
