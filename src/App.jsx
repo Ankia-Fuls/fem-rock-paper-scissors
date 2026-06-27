@@ -30,6 +30,7 @@ function App() {
   // Animate display
   const [displayUser, setDisplayUser] = useState(false);
   const [displayComputer, setDisplayComputer] = useState(false);
+  const [displayResult, setDisplayResult] = useState(false);
 
   // LOCAL STORAGE SCORE INIT
   useEffect(() => {
@@ -93,6 +94,10 @@ function App() {
     setTimeout(() => {
       setDisplayComputer(true);
     }, 900);
+
+    setTimeout(() => {
+      setDisplayResult(true);
+    }, 1600);
 
   }
 
@@ -218,7 +223,7 @@ function App() {
             <div className='results__computer'>
               <h2>The House Picked</h2>
               <p className='sr-only'>{computerChoice}</p>
-              <div className='results__display results__display--house'>
+              <div className='results__display'>
                 <div className={!displayComputer ? 'results__display--container' : 'results__display--shown results__display--container'}>
                   <div className='results__display--wrapper'>
                     <img src={"./src/assets/images/icon-" + computerChoice + ".svg"} alt={computerChoice} aria-hidden="true" />
@@ -227,7 +232,7 @@ function App() {
               </div>
             </div>
 
-            <div className='results__result'>
+            <div className={!displayResult ? 'results__result' : 'results__result--shown results__result'}>
               <h2>{result}</h2>
               <button className='results__reset' onClick={reset}>Play Again</button>
             </div>
