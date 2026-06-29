@@ -201,35 +201,35 @@ function App() {
             {/* SCISSORS */}
             <button className='choice__btn' onClick={() => choose("scissors")} aria-label='Choose scissors' id="scissors">
               <div className='choice__btn--wrapper'>
-                <img src="./src/assets/images/icon-scissors.svg" alt="" />
+                <img src="./assets/images/icon-scissors.svg" alt="" />
               </div>
             </button>
 
             {/* PAPER */}
             <button className='choice__btn' onClick={() => choose("paper")} aria-label='Choose paper' id="paper">
               <div className='choice__btn--wrapper'>
-                <img src="./src/assets/images/icon-paper.svg" alt="" />
+                <img src="./assets/images/icon-paper.svg" alt="" />
               </div>
             </button>
 
             {/* ROCK */}
             <button className='choice__btn' onClick={() => choose("rock")} aria-label='Choose rock' id="rock">
               <div className='choice__btn--wrapper'>
-                <img src="./src/assets/images/icon-rock.svg" alt="" />
+                <img src="./assets/images/icon-rock.svg" alt="" />
               </div>
             </button>
 
             {/* LIZARD */}
             <button className='choice__btn' onClick={() => choose("lizard")} aria-label='Choose lizard' id="lizard">
               <div className='choice__btn--wrapper'>
-                <img src="./src/assets/images/icon-lizard.svg" alt="" />
+                <img src="./assets/images/icon-lizard.svg" alt="" />
               </div>
             </button>
 
             {/* SPOCK */}
             <button className='choice__btn' onClick={() => choose("spock")} aria-label='Choose spock' id="spock">
               <div className='choice__btn--wrapper'>
-                <img src="./src/assets/images/icon-spock.svg" alt="" />
+                <img src="./assets/images/icon-spock.svg" alt="" />
               </div>
             </button>
           </div>
@@ -242,7 +242,7 @@ function App() {
               <div className={displayResult && (result === "You Win") ? 'results__display results__winner' : 'results__display'}>
                 <div className={!displayUser ? 'results__display--container' : 'results__display--shown results__display--container'}>
                   <div className='results__display--wrapper'>
-                    <img src={"./src/assets/images/icon-" + userChoice + ".svg"} alt={userChoice} aria-hidden="true" />
+                    <img src={"./assets/images/icon-" + userChoice + ".svg"} alt={userChoice} aria-hidden="true" />
                   </div>
                 </div>
               </div>
@@ -254,7 +254,7 @@ function App() {
               <div className={displayResult && (result === "You Lose") ? 'results__display results__winner' : 'results__display'}>
                 <div className={!displayComputer ? 'results__display--container' : 'results__display--shown results__display--container'}>
                   <div className='results__display--wrapper'>
-                    <img src={"./src/assets/images/icon-" + computerChoice + ".svg"} alt={computerChoice} aria-hidden="true" />
+                    <img src={"./assets/images/icon-" + computerChoice + ".svg"} alt={computerChoice} aria-hidden="true" />
                   </div>
                 </div>
               </div>
@@ -279,10 +279,10 @@ function App() {
           }>
           <div className='rules__container'>
             <h2 className='rules__heading'>Rules</h2>
-            <img src="./src/assets/images/image-rules-bonus.svg" alt="Scissors beats paper and lizard. Paper beats rock and spock. Rock beats scissors and lizard. Lizard beats paper and spock. Spock beats scissors and rock." className='rules__img' />
+            <img src="./assets/images/image-rules-bonus.svg" alt="Scissors beats paper and lizard. Paper beats rock and spock. Rock beats scissors and lizard. Lizard beats paper and spock. Spock beats scissors and rock." className='rules__img' />
             <button onClick={() => setIsOpen(false)} className='rules__close-btn dismiss'>
               <p className='sr-only'>Close</p>
-              <img src="./src/assets/images/icon-close.svg" alt="" />
+              <img src="./assets/images/icon-close.svg" alt="" />
             </button>
           </div>
         </dialog>
