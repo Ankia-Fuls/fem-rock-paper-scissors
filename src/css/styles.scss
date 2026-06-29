@@ -99,7 +99,7 @@ main {
     margin: 0 auto;
 
     display: grid;
-    grid-template-columns: 1fr;
+    grid-template-columns: 100%;
     grid-template-rows: 6.25rem calc(100% - 6.25rem - 2.1875rem - 2.5625rem - 3.375rem); //minus the first row, the button and the spacing around it
 
     @media screen and (min-width:$lg) {
@@ -578,6 +578,12 @@ main {
     max-height: none;
     max-width: none;
     border: none;
+    background-color: aqua;
+
+    &__container {
+        width: 70%;
+        background-color: white;
+    }
 }
 
 

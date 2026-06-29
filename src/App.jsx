@@ -16,6 +16,7 @@ function App() {
   const dialogRef = useRef(null);
   const [isOpen, setIsOpen] = useState(false);
 
+
   // Score
   const [score, setScore] = useState(0);
   const [result, setResult] = useState("");
@@ -48,7 +49,9 @@ function App() {
     const dialog = dialogRef.current;
 
     if (isOpen) {
-      dialog.showModal();
+      if (dialog && !dialog.open) {
+        dialog.showModal();
+      }
     } else {
       dialog.close();
     }
@@ -59,19 +62,33 @@ function App() {
   }, [isOpen]);
 
 
-  // make area outside clickable and check that flag is reset on escape
-  // const closeModalClick = (e) => {
-  //   const dialog = dialogRef.current;
-  //   const rect = dialog.getBoundingClientRect();
-  //   if (
-  //     e.clientX < rect.left ||
-  //     e.clientX > rect.right ||
-  //     e.clientY < rect.top ||
-  //     e.clientY > rect.bottom
-  //   ) {
-  //     dialog.close();
-  //   }
-  // }
+  // Close events
+  useEffect(() => {
+    const dialog = dialogRef.current;
+
+    /** function that runs when we intercept a close event */
+    function handleClose(event) {
+      event.preventDefault();
+      event.stopPropagation();
+      setIsOpen(false);
+    }
+
+    /** function that runs when the user presses the Escape key when the Modal is open */
+    function closeOnEscape(event) {
+      if (event.code === "Escape") {
+        handleClose(event);
+      }
+    }
+
+    // we add a keydown event listener to intercept the Escape key press
+    dialog.addEventListener("keydown", closeOnEscape);
+
+    // our clean up function removes the event listeners to prevent memory leaks
+    return () => {
+      dialog.removeEventListener("keydown", closeOnEscape);
+    };
+  }, [setIsOpen]);
+
 
   // USER CHOOSE VALUE
   const choose = (value) => {
@@ -244,8 +261,10 @@ function App() {
         </section>
 
 
-        <dialog className='rules' ref={dialogRef}>
-          <button onClick={() => setIsOpen(false)}>Close</button>
+        <dialog className='rules' ref={dialogRef} onClick={() => setIsOpen(false)}>
+          <div className='rules__container'>
+            <button onClick={() => setIsOpen(false)}>Close</button>
+          </div>
         </dialog>
 
       </main>
