@@ -92,6 +92,8 @@ Use this section to outline areas that you want to continue focusing on in futur
 - [Dialog tag](https://medium.com/@mevbg/modals-in-html-from-div-overlays-to-the-dialog-element-142715c0799f) - This showed me how to use a dialog tag for the rule pop-up;
 - [Dialog in React](https://clhenrick.io/blog/react-a11y-modal-dialog/) - This helped me understand how to use the useRef hook to target the dialog to open and close it properly.
 - [Overwrite Dialog width and height](https://til.simonwillison.net/css/dialog-full-height) - This helped me understand why my dialog element wasn't taking up the full page.
+- [React Modal Accessibility](https://clhenrick.io/blog/react-a11y-modal-dialog/) - This helped me understand how to use the dialog functions with React.
+- [Dialog Accessibility](https://jaredcunha.com/blog/html-dialog-getting-accessibility-and-ux-right) - More information on tweaking dialog tags for accessibility
 
 ## Author
 

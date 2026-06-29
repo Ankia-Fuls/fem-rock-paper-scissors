@@ -16,7 +16,6 @@ function App() {
   const dialogRef = useRef(null);
   const [isOpen, setIsOpen] = useState(false);
 
-
   // Score
   const [score, setScore] = useState(0);
   const [result, setResult] = useState("");
@@ -32,6 +31,10 @@ function App() {
   const [displayUser, setDisplayUser] = useState(false);
   const [displayComputer, setDisplayComputer] = useState(false);
   const [displayResult, setDisplayResult] = useState(false);
+
+  // Focus management
+  const choiceStage = useRef(null);
+  const resultStage = useRef(null);
 
   // LOCAL STORAGE SCORE INIT
   useEffect(() => {
@@ -68,9 +71,13 @@ function App() {
 
     /** function that runs when we intercept a close event */
     function handleClose(event) {
+
       event.preventDefault();
       event.stopPropagation();
+
       setIsOpen(false);
+
+
     }
 
     /** function that runs when the user presses the Escape key when the Modal is open */
@@ -102,6 +109,7 @@ function App() {
 
     // Update state for next page
     setChosen(true);
+    resultStage.current.focus();
 
     // Animate
     setTimeout(() => {
@@ -171,6 +179,8 @@ function App() {
     setDisplayUser(false);
     setDisplayComputer(false);
     setDisplayResult(false);
+
+    choiceStage.current.focus();
   }
 
   return (
@@ -187,7 +197,7 @@ function App() {
           </div>
 
           {/* Choosing Step */}
-          <div className={!chosen ? 'game__choice' : 'game__choice hidden'} aria-hidden={chosen} inert={chosen}>
+          <div className={!chosen ? 'game__choice' : 'game__choice hidden'} aria-hidden={chosen} inert={chosen} ref={choiceStage}>
             {/* SCISSORS */}
             <button className='choice__btn' onClick={() => choose("scissors")} aria-label='Choose scissors' id="scissors">
               <div className='choice__btn--wrapper'>
@@ -225,7 +235,7 @@ function App() {
           </div>
 
           {/* Results */}
-          <div className={chosen ? 'game__results' : 'game__results hidden'} aria-hidden={!chosen} inert={!chosen}>
+          <div className={chosen ? 'game__results' : 'game__results hidden'} aria-hidden={!chosen} inert={!chosen} ref={resultStage}>
             <div className='results__user'>
               <h2>You Picked</h2>
               <p className='sr-only'>{userChoice}</p>
@@ -256,14 +266,24 @@ function App() {
             </div>
           </div>
 
-
           <button onClick={() => setIsOpen(true)} className='game__rule-btn'>Rules</button>
         </section>
 
 
-        <dialog className='rules' ref={dialogRef} onClick={() => setIsOpen(false)}>
+        <dialog className='rules dismiss' ref={dialogRef}
+          onClick={(event) => {
+            if (event.target.classList.contains("dismiss")) {
+              setIsOpen(false);
+            }
+          }
+          }>
           <div className='rules__container'>
-            <button onClick={() => setIsOpen(false)}>Close</button>
+            <h2 className='rules__heading'>Rules</h2>
+            <img src="./src/assets/images/image-rules-bonus.svg" alt="Scissors beats paper and lizard. Paper beats rock and spock. Rock beats scissors and lizard. Lizard beats paper and spock. Spock beats scissors and rock." className='rules__img' />
+            <button onClick={() => setIsOpen(false)} className='rules__close-btn dismiss'>
+              <p className='sr-only'>Close</p>
+              <img src="./src/assets/images/icon-close.svg" alt="" />
+            </button>
           </div>
         </dialog>
 
