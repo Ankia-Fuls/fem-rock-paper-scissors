@@ -208,11 +208,18 @@ main {
         letter-spacing: 0.125rem;
         text-transform: uppercase;
 
+        transition: background-color 0.3s ease-in-out;
+
         @media screen and (min-width:$lg) {
             bottom: 1.875rem;
             left: unset;
             right: 2rem;
             transform: unset;
+        }
+
+        &:hover {
+            cursor: pointer;
+            background-color: hsla(0, 0%, 100%, 0.1);
         }
 
     }
@@ -321,6 +328,10 @@ main {
             img {
                 width: 45%;
             }
+        }
+
+        &:hover {
+            cursor: pointer;
         }
     }
 }
@@ -472,6 +483,13 @@ main {
         border-radius: 0.5rem;
         border: none;
 
+        transition: background-color 0.1s ease-in-out, color 0.1s ease-in-out;
+
+        &:hover {
+            cursor: pointer;
+            background-color: rgb(105, 224, 245);
+            color: var(--white);
+        }
     }
 
     &__display {
@@ -656,7 +674,7 @@ main {
     }
 }
 
-
+// FOOTER
 .attribution {
     width: 100%;
     background-color: var(--radial-end);

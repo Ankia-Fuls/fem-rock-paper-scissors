@@ -1,4 +1,1 @@
-TO DO:
-
-- rules modal
 

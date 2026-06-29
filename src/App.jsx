@@ -270,7 +270,7 @@ function App() {
         </section>
 
 
-        <dialog className='rules dismiss' ref={dialogRef}
+        <dialog className={isOpen ? 'rules dismiss' : "hidden"} ref={dialogRef} aria-hidden={!isOpen} inert={!isOpen}
           onClick={(event) => {
             if (event.target.classList.contains("dismiss")) {
               setIsOpen(false);
