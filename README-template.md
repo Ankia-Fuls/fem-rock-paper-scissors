@@ -33,7 +33,7 @@ Users should be able to:
 ### Links
 
 - Solution URL: [GitHub Repo](https://github.com/Ankia-Fuls/fem-rock-paper-scissors)
-- Live Site URL: [GitHub Pages](https://your-live-site-url.com)
+- Live Site URL: [GitHub Pages](https://ankia-fuls.github.io/fem-rock-paper-scissors/)
 
 ## My process
 
@@ -50,27 +50,42 @@ Users should be able to:
 
 ### What I learned
 
-Use this section to recap over some of your major learnings while working through this project. Writing these out and providing code samples of areas you want to highlight is a great way to reinforce your own knowledge.
+I learned how to create the button styling using box shadows instead of borders. The code below shows how I did that.
 
-To see how you can add code snippets, see below:
-
-```html
-<h1>Some HTML code I'm proud of</h1>
-```
 ```css
-.proud-of-this-css {
-  color: papayawhip;
-}
-```
-```js
-const proudOfThisFunc = () => {
-  console.log('🎉')
-}
+&__btn {
+        --color: var(--gold-500);
+        --accent: var(--gold-600);
+
+        width: 6.0625rem;
+        height: 6.0625rem;
+        border-radius: 50%;
+        border: none;
+        box-shadow: inset 0 -0.25rem var(--accent), inset 0 0 0 0.75rem var(--color);
+
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        &--wrapper {
+            width: calc(100% - 1.5rem);
+            height: calc(100% - 1.5rem);
+            border-radius: 50%;
+            border: none;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+            box-shadow: inset 0 0.25rem var(--gray-shadow); //inner shadow
+
+            img {
+                width: 45%;
+            }
+        }
+    }
 ```
 
-If you want more help with writing markdown, we'd recommend checking out [The Markdown Guide](https://www.markdownguide.org/) to learn more.
-
-**Note: Delete this note and the content within this section and replace with your own learnings.**
+I also learned more on how to create accessible modals and screen changes. The main sources I used are listed in the useful resources section.
 
 ### Continued development
 
